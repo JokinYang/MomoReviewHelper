@@ -1,0 +1,3 @@
+airtest~=1.2.0
+pocoui~=1.0.82
+SQLAlchemy~=1.4.22
