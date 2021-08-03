@@ -21,6 +21,8 @@ PASSWORD = os.environ.get('PASSWORD', None)
 getLogger('airtest.core.android.adb').setLevel('ERROR')
 
 
+# /data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db
+
 @dataclass(init=True)
 class WordDetail:
 	word: str = field(default=None)
@@ -196,20 +198,29 @@ class Momo:
 						word_detail.book = book_name
 						print(f'\t add:<{word}> to database')
 						session.add(Word(**word_detail.__dict__))
-						session.commit()
+						# session.commit()
 						self.back()
 
 						count += 1
-					session.flush()
+					# session.flush()
 					check_effective = bool(count % 50 == 1)
 					if not self.swipe(direction='up', distance=0.75, check_effective=check_effective):
 						print('Swipe to bottom, will exit the work loop.')
 						break
 				except Exception as e:
+					raise e
 					print(e)
 
 	def download_backup(self):
 		pass
+
+	def pull_db(self, local=None):
+		db_dir = "/data/data/com.maimemo.android.momo/databases/"
+		db_name_cmd = f'ls {db_dir} | grep maimemo.v'
+		db_name = self.poco.adb_client.shell(db_name_cmd)
+		db_path = f'{db_dir.strip()}{db_name.strip()}'
+		local_path = local or './'
+		self.poco.adb_client.pull(db_path, local_path)
 
 	def dump_screen(self):
 		return self.poco.agent.hierarchy.dump()
@@ -294,8 +305,10 @@ class Momo:
 momo = Momo(poco)
 
 momo.launch()
+
 # momo.login_with_account(ACCOUNT, PASSWORD)
 # momo.goto_wordActivity()
+## momo.parse_word_book()
 # momo.parse_word_detail()
 # start direct in  android shell
 # su
