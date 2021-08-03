@@ -25,7 +25,7 @@ class Word(Base):
 
 Base.metadata.create_all(engine, checkfirst=True)
 
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine,autocommit=True,autoflush=True)
 
 
 
