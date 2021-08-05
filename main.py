@@ -3,6 +3,7 @@ import os
 import re
 from dataclasses import dataclass, field
 from logging import getLogger
+from typing import List, AnyStr, Optional
 
 from airtest.core.api import connect_device
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
@@ -208,19 +209,37 @@ class Momo:
 						print('Swipe to bottom, will exit the work loop.')
 						break
 				except Exception as e:
-					raise e
 					print(e)
 
 	def download_backup(self):
-		pass
+		if not self.main_page_container.exists():
+			self.stop()
+			self.launch()
+			self.main_page_container.wait(self.timeout)
+			assert self.main_page_container.exists(), 'Could not find the main page container,you may not login.'
+
+		path_to_download = [self.mp_setting, self.sp_backup_and_restore, self.sp_bp_download_backup, self.ok_button,
+							self.ok_button]
+		self.walk_in_path(path_to_download)
+
+	@staticmethod
+	def walk_in_path(paths: List[UIObjectProxy], timeout=10):
+		for i in paths:
+			i.wait(timeout)
+			if i.exists():
+				i.click()
+			else:
+				raise Exception(f'{i.get_name()} not exists')
 
 	def pull_db(self, local=None):
+		self.download_backup()
 		db_dir = "/data/data/com.maimemo.android.momo/databases/"
 		db_name_cmd = f'ls {db_dir} | grep maimemo.v'
 		db_name = self.poco.adb_client.shell(db_name_cmd)
 		db_path = f'{db_dir.strip()}{db_name.strip()}'
 		local_path = local or './'
 		self.poco.adb_client.pull(db_path, local_path)
+		return os.path.exists(os.path.join(local_path, db_name))
 
 	def dump_screen(self):
 		return self.poco.agent.hierarchy.dump()
@@ -295,9 +314,12 @@ class Momo:
 	mp_statistics: UIObjectProxy = property(lambda self: self.poco('统计'))
 	mp_setting: UIObjectProxy = property(lambda self: self.poco('设置'))
 	# setting page
-	sp_backup_and_restore: UIObjectProxy = property(lambda self: self.poco('备份与还原'))
-	sp_bp_download_backup: UIObjectProxy = property(lambda self: self.poco('下载还原最近数据'))
+	sp_backup_and_restore: UIObjectProxy = property(lambda self: self.poco('com.maimemo.android.momo:id/backup_ctn'))
+	sp_bp_download_backup: UIObjectProxy = property(
+		lambda self: self.poco('com.maimemo.android.momo:id/tv_activity_backup_revert_study'))
 	# sp_bp_download_backup: UIObjectProxy = property(lambda self: self.poco('下载还原最近数据'))
+
+	ok_button: UIObjectProxy = property(lambda self: self.poco(text='确定'))
 
 	last_book_btn: UIObjectProxy = property(lambda self: self.poco('com.maimemo.android.momo:id/selbk_tv_last_book'))
 
@@ -308,7 +330,8 @@ momo.launch()
 
 # momo.login_with_account(ACCOUNT, PASSWORD)
 # momo.goto_wordActivity()
-## momo.parse_word_book()
+# momo.parse_word_book()
+momo.download_backup()
 # momo.parse_word_detail()
 # start direct in  android shell
 # su
