@@ -12,6 +12,8 @@ env:
   apk-url: https://cdn.maimemo.com/apk/maimemo_v3.8.56_1617086292.apk
   # env for setup-python
   python-version: 3.8
+  
+  api-level: 29
 
 jobs:
   
@@ -45,8 +47,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-latest
     needs: [ensure-apk]
-    env:
-      api-level: 29
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
