@@ -10,26 +10,29 @@ jobs:
   
   setup-python:
     runs-on: macos-latest
+    env: 
+      python-version: 3.8.10
+    
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: ${{ env.python-version }}
       
       - name: python cache
         uses: actions/cache@v2
         id: python-cache
         with: 
-          path: ./venv/*
-          key: python-venv-${{ runner.os }}-${{ hashFiles('./requirements.txt') }}
+          path: /Users/runner/hostedtoolcache/Python/${{ env.python-version }}/
+          key: python${{ env.python-version }}-${{ runner.os }}-${{ hashFiles('./requirements.txt') }}
           
       - name: Create venv and install requirements for caching
         if: steps.python-cache.outputs.cache-hit != 'true'
         run: |
-            python -m venv ./venv
             pip install -r requirements.txt
-            source ./venv/bin/activite
+            python -c "import airtest;print(airtest)"
             pip list
+            exit 1
         
         
   
