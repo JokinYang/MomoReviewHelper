@@ -2,15 +2,15 @@ name: CI
 on:
   schedule:
     # Runs every 10th minute past the 12, 17 and 23rd hour.
-    - cron: '10 12,17,23 * * *' 
+    - cron: '10 12,17,23 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 
 
 jobs:
-  
-  run-job: 
+
+  run-job:
     runs-on: macos-latest
     env:
       # env for ensure-apk
@@ -19,17 +19,20 @@ jobs:
       # env for setup-python
       python-version: 3.8
       api-level: 29
-      
-    steps: 
+      # env for memo login
+      ACCOUNT: ${{ secrets.ACCOUNT }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+
+    steps:
       - uses: actions/checkout@v2
 
       #### 1. setup python
       - name: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ env.python-version }}    
-      - run: pip install -r requirements.txt 
-      
+          python-version: ${{ env.python-version }}
+      - run: pip install -r requirements.txt
+
       #### 2. Download and cache APK
       - name: APK Cache
         uses: actions/cache@v2
@@ -41,7 +44,7 @@ jobs:
         if: steps.apk-cache.outputs.cache-hit != 'true'
         run: |
           wget -O ${{ env.apk-file }} ${{ env.apk-url }}
-          
+
       #### 3. Cache AVD
       - name: AVD cache
         uses: actions/cache@v2
@@ -51,7 +54,7 @@ jobs:
             ~/.android/avd/*
             ~/.android/adb*
           key: avd-${{ env.api-level }}
-          
+
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -61,8 +64,8 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
-          
-      #### Run main script !!!
+
+      #### Run main script
       - name: run
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -71,6 +74,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-                adb install -r -g ${{ env.apk-file }}
-                adb shell pm list packages com.maimemo.android.momo
-                python -m pip list
+            adb install -r -g ${{ env.apk-file }}
+            adb shell pm list packages com.maimemo.android.momo
+            python main.py
+      - run: cat *.md

@@ -1,51 +1,29 @@
 import json
 import os
 import re
-from dataclasses import dataclass, field
+import sys
 from logging import getLogger
-from typing import List, AnyStr, Optional
+from typing import List
 
 from airtest.core.api import connect_device
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from poco.proxy import UIObjectProxy
 from sqlalchemy.orm.session import Session as Session_type
 
-from db_helper import Session, Word
-
-connect_device('Android:///192.168.0.108:5555')
-poco = AndroidUiautomationPoco()
-poco.device.wake()
-
-ACCOUNT = os.environ.get('ACCOUNT', None)
-PASSWORD = os.environ.get('PASSWORD', None)
+from db_helper import Session, Word, query_words, transfer_to_word_obj, WordDetail
+from page_maker import PageGenerator
 
 getLogger('airtest.core.android.adb').setLevel('ERROR')
 
 
 # /data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db
 
-@dataclass(init=True)
-class WordDetail:
-	word: str = field(default=None)
-	book: str = field(default=None)
-	pron_official_avatar: str = field(default=None)
-	pronunciation: str = field(default=None)
-	interpretation: str = field(default=None)
-	ranking: str = field(default=None)
-	study_user_count: str = field(default=None)
-	difficulty: str = field(default=None)
-	acknowledge_rate: str = field(default=None)
-	note_type: str = field(default=None)
-	note_content: str = field(default=None)
-	phrase: str = field(default=None)  # json
-
-	phrase_list = property(lambda self: json.loads(self.phrase or '[]'))
-
 
 class Momo:
 
 	def __init__(self, poco: AndroidUiautomationPoco, timeout=5):
 		self.poco = poco
+		self.poco.adb_client.cmd('root')
 		self.timeout = timeout
 
 	def ensure_app(self, apk_path, reinstall=False):
@@ -95,7 +73,9 @@ class Momo:
 		self.main_page_container.wait(timeout=timeout)
 		return self.main_page_container.exists()
 
-	def launch(self):
+	def launch(self, relaunch=True):
+		if relaunch:
+			self.poco.adb_client.stop_app(self.package_name)
 		self.poco.adb_client.start_app(self.package_name)
 
 	def is_login(self):
@@ -235,11 +215,11 @@ class Momo:
 		self.download_backup()
 		db_dir = "/data/data/com.maimemo.android.momo/databases/"
 		db_name_cmd = f'ls {db_dir} | grep maimemo.v'
-		db_name = self.poco.adb_client.shell(db_name_cmd)
-		db_path = f'{db_dir.strip()}{db_name.strip()}'
+		db_name = self.poco.adb_client.shell(db_name_cmd).strip()
+		db_path = f'{db_dir.strip()}{db_name}'
 		local_path = local or './'
 		self.poco.adb_client.pull(db_path, local_path)
-		return os.path.exists(os.path.join(local_path, db_name))
+		return os.path.join(local_path, db_name)
 
 	def dump_screen(self):
 		return self.poco.agent.hierarchy.dump()
@@ -324,21 +304,35 @@ class Momo:
 	last_book_btn: UIObjectProxy = property(lambda self: self.poco('com.maimemo.android.momo:id/selbk_tv_last_book'))
 
 
+ACCOUNT = os.environ.get('ACCOUNT', None)
+PASSWORD = os.environ.get('PASSWORD', None)
+
+# connect_device('Android:///192.168.0.108:5555')
+connect_device('Android:///')
+poco = AndroidUiautomationPoco()
+poco.device.wake()
+
 momo = Momo(poco)
-
 momo.launch()
+print('Try to login')
+momo.login_with_account(ACCOUNT, PASSWORD)
 
-# momo.login_with_account(ACCOUNT, PASSWORD)
-# momo.goto_wordActivity()
-# momo.parse_word_book()
-momo.download_backup()
-# momo.parse_word_detail()
-# start direct in  android shell
-# su
-# setprop service.adb.tcp.port 5555
-# stop adbd
-# start adbd
+if not momo.is_login():
+	print('Your account seem not login, please check your account & password!')
+	sys.exit(-1)
 
-# Start from abd
-# adb tcpip 5555
-# adb connect 192.168.0.101:5555
+print("Start pull db")
+db_path = momo.pull_db()
+print(f'Using db:{db_path}')
+today_words = query_words(db_path)
+if not today_words:
+	print('Could not find words learn today.')
+	sys.exit(0)
+print(f'Find {len(today_words or [])} word')
+print(today_words)
+word_obj = transfer_to_word_obj(today_words)
+print(f'Find {len(word_obj or [])} in database')
+
+p = PageGenerator(word_obj)
+md_path, _ = p.gen_md()
+print(f'Gen markdown file:{md_path}')
