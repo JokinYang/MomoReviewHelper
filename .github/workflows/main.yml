@@ -24,7 +24,18 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ env.python-version }}
-      - run: pip install -r requirements.txt 
+      
+      - uses: actions/cache@v2
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: install requirements
+        if: steps.pip-cache.outputs.cache-hit != 'true'
+        run: pip install -r requirements.txt 
+      
   
   ensure-apk:
     runs-on: macos-latest
@@ -84,6 +95,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
+                pip list
                 ls 
                 adb install -r -g ${{ env.apk-file }}
                 
