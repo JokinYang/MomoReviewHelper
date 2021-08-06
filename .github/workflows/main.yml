@@ -16,14 +16,7 @@ env:
   api-level: 29
 
 jobs:
-  
-  setup-python:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      
-      
-  
+     
   ensure-apk:
     runs-on: macos-latest
     steps:
