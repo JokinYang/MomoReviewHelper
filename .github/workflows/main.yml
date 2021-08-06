@@ -23,18 +23,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ env.python-version }}
-      
-      - uses: actions/cache@v2
-        id: pip-cache
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: install requirements
-        if: steps.pip-cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements.txt 
+          python-version: ${{ env.python-version }}    
+      - run: pip install -r requirements.txt 
       
   
   ensure-apk:
@@ -44,8 +34,8 @@ jobs:
         uses: actions/cache@v2
         id: apk-cache
         with:
-          path: ./${{ env.apk-name }}
-          key: ${{ env.apk-url }}
+          path: ./${{ env.apk-file }}
+          key: ${{ env.apk-url }}-1
       - name: download apk
         if: steps.apk-cache.outputs.cache-hit != 'true'
         run: |
@@ -53,7 +43,7 @@ jobs:
       - name: check exists    
         run: |
           ls
-          [ -f "${{ env.apk-name }}" ]
+          [ -f ${{ env.apk-file }} ]
   
   setup-emulator:
     # The type of runner that the job will run on
