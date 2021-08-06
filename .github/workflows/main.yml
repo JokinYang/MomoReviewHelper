@@ -41,7 +41,8 @@ jobs:
           wget -q -O ${{ env.apk-file }} ${{env.apk-url}}
       - name: check exists    
         run: |
-          [ -f ${{ env.apk-name }} ]
+          ls
+          [ -f "${{ env.apk-name }}" ]
   
   setup-emulator:
     # The type of runner that the job will run on
