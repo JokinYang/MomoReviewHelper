@@ -39,7 +39,7 @@ jobs:
       - name: download apk
         if: steps.apk-cache.outputs.cache-hit != 'true'
         run: |
-          wget -q -O ${{ env.apk-file }} ${{env.apk-url}}
+          wget -O ${{ env.apk-file }} ${{ env.apk-url }}
       - name: check exists    
         run: |
           ls
