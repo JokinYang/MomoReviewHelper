@@ -21,10 +21,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ env.python-version }}    
-      - run: pip install -r requirements.txt 
+      
       
   
   ensure-apk:
@@ -75,8 +72,16 @@ jobs:
       
   run-job: 
     runs-on: macos-latest
-    needs: [setup-python,ensure-apk,setup-emulator]
+    needs: [ ensure-apk,setup-emulator]
     steps: 
+      - uses: actions/checkout@v2
+      
+      - name: setup-python
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.python-version }}    
+      - run: pip install -r requirements.txt 
+      - run: ls
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -87,7 +92,7 @@ jobs:
           script: |
                 pip list
                 ls 
-                adb install -r -g ${{ env.apk-file }}
+          # adb install -r -g ${{ env.apk-file }}
                 
 
       
