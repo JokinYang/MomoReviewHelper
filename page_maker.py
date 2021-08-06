@@ -9,7 +9,7 @@ class PageGenerator:
 		self.words = words
 
 	def gen_md(self, output_path=None):
-		output_path = output_path or '{:%Y/%m/%d}.md'.format(self.words)
+		output_path = output_path or '{:%Y%m%d}.md'.format(self.date)
 		content = ''.join([self._gen_head(), self._gen_body()])
 		with open(output_path, 'w') as f:
 			f.write(content)

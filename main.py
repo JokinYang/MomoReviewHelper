@@ -2,10 +2,12 @@ import json
 import os
 import re
 import sys
+import platform
 from logging import getLogger
 from typing import List
 
 from airtest.core.api import connect_device
+from airtest.core.android import constant
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from poco.proxy import UIObjectProxy
 from sqlalchemy.orm.session import Session as Session_type
@@ -13,18 +15,26 @@ from sqlalchemy.orm.session import Session as Session_type
 from db_helper import Session, Word, query_words, transfer_to_word_obj, WordDetail
 from page_maker import PageGenerator
 
-getLogger('airtest.core.android.adb').setLevel('ERROR')
+getLogger('airtest.core.android.adb').setLevel('DEBUG')
 
 
-# /data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db
+def get_local_adb_path():
+	r = os.popen('which adb', 'r')
+	return r.read().strip()
+
+
+# use host adb for airtest to avoid the device offline error
+system = platform.system()
+machine = platform.machine()
+constant.DEFAULT_ADB_PATH['{}-{}'.format(system, machine)] = get_local_adb_path()
 
 
 class Momo:
 
 	def __init__(self, poco: AndroidUiautomationPoco, timeout=5):
 		self.poco = poco
-		self.poco.adb_client.cmd('root')
 		self.timeout = timeout
+		self.poco.adb_client.cmd('root')
 
 	def ensure_app(self, apk_path, reinstall=False):
 		# https://cdn.maimemo.com/apk/maimemo_v3.8.56_1617086292.apk
@@ -212,6 +222,7 @@ class Momo:
 				raise Exception(f'{i.get_name()} not exists')
 
 	def pull_db(self, local=None):
+		# /data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db
 		self.download_backup()
 		db_dir = "/data/data/com.maimemo.android.momo/databases/"
 		db_name_cmd = f'ls {db_dir} | grep maimemo.v'
@@ -328,7 +339,7 @@ today_words = query_words(db_path)
 if not today_words:
 	print('Could not find words learn today.')
 	sys.exit(0)
-print(f'Find {len(today_words or [])} word')
+print(f'Find {len(today_words or [])} word learn today')
 print(today_words)
 word_obj = transfer_to_word_obj(today_words)
 print(f'Find {len(word_obj or [])} in database')
