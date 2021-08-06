@@ -65,18 +65,50 @@ jobs:
       
   run-job: 
     runs-on: macos-latest
-    needs: [ ensure-apk,setup-emulator]
+#     needs: [ ensure-apk,setup-emulator]
     steps: 
       - uses: actions/checkout@v2
       
+      #### 1. setup python
       - name: setup-python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.python-version }}    
-          
       - run: pip install -r requirements.txt 
-      - run: ls
       
+      #### 2. Download APK
+      - name: Cache apk
+        uses: actions/cache@v2
+        id: apk-cache
+        with:
+          path: ./${{ env.apk-file }}
+          key: ${{ env.apk-url }}-1
+      - name: download apk
+        if: steps.apk-cache.outputs.cache-hit != 'true'
+        run: |
+          wget -O ${{ env.apk-file }} ${{ env.apk-url }}
+          
+      #### 3. Cache AVD
+      - name: AVD cache
+        uses: actions/cache@v2
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ env.api-level }}
+          
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ env.api-level }}
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          script: echo "Generated AVD snapshot for caching."
+          
+      #### Run normal test
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -85,4 +117,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           # adb install -r -g ${{ env.apk-file }}
-          script: ls
+          script: |
+                adb install -r -g ${{ env.apk-file }}
+                adb shell pm list packages com.maimemo.android.momo
+                python -m pip list
