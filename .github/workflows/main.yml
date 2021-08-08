@@ -32,6 +32,7 @@ jobs:
         with:
           python-version: ${{ env.python-version }}
       - run: pip install -r requirements.txt
+      - run: echo ${{ env.pythonLocation }}
 
       #### 2. Download and cache APK
       - name: APK Cache
