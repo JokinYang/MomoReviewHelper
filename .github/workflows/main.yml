@@ -33,11 +33,11 @@ jobs:
           python-version: ${{ env.python-version }}
 
       - name: Python pkgs Cache
-          uses: actions/cache@v2
-          id: python-cache
-          with:
-            path: ${{ env.pythonLocation }}
-            key: python${{ env.python-version }}-${{ runner.os }}-${{ hashFiles('requirements.txt') }}-${{ env.pythonLocation }}
+        uses: actions/cache@v2
+        id: python-cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: python${{ env.python-version }}-${{ runner.os }}-${{ hashFiles('requirements.txt') }}-${{ env.pythonLocation }}
       - name: install requirements
         if: steps.python-cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
