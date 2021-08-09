@@ -6,7 +6,6 @@ from logging import getLogger
 from typing import List, Union
 
 from airtest.core.api import connect_device
-from airtest.core.android import constant
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 from poco.proxy import UIObjectProxy
 from sqlalchemy.orm.session import Session as Session_type
@@ -25,6 +24,7 @@ def get_local_adb_path():
 def monkey_patch_for_airtest():
 	import platform
 	from copy import copy
+	from airtest.core.android import constant
 	from airtest.core.android.adb import ADB
 	# use host adb for airtest to avoid the device offline error
 	system = platform.system()
@@ -39,12 +39,11 @@ def monkey_patch_for_airtest():
 		"""
 		# remove forward成功后，会改变self._forward_local_using的内容，因此需要copy一遍
 		# After remove_forward() is successful, self._forward_local_using will be changed, so it needs to be copied
-		print('Hijacked success!')
 		forward_local_list = copy(self._forward_local_using)
 		for local in forward_local_list:
 			self.remove_forward(local)
 
-	ADB._cleanup_forwards = _cleanup_forwards
+	ADB._cleanup_forwards = lambda self: None  # do nothing for clean forwards
 
 
 monkey_patch_for_airtest()
