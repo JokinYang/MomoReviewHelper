@@ -2,9 +2,8 @@ import json
 import os
 import re
 import sys
-import platform
 from logging import getLogger
-from typing import List
+from typing import List, Union
 
 from airtest.core.api import connect_device
 from airtest.core.android import constant
@@ -23,10 +22,32 @@ def get_local_adb_path():
 	return r.read().strip()
 
 
-# use host adb for airtest to avoid the device offline error
-system = platform.system()
-machine = platform.machine()
-constant.DEFAULT_ADB_PATH['{}-{}'.format(system, machine)] = get_local_adb_path()
+def monkey_patch_for_airtest():
+	import platform
+	from copy import copy
+	from airtest.core.android.adb import ADB
+	# use host adb for airtest to avoid the device offline error
+	system = platform.system()
+	machine = platform.machine()
+	constant.DEFAULT_ADB_PATH['{}-{}'.format(system, machine)] = get_local_adb_path()
+
+	def _cleanup_forwards(self):
+		"""
+		Remove the local forward ports
+		Returns:
+			None
+		"""
+		# remove forward成功后，会改变self._forward_local_using的内容，因此需要copy一遍
+		# After remove_forward() is successful, self._forward_local_using will be changed, so it needs to be copied
+		print('Hijacked success!')
+		forward_local_list = copy(self._forward_local_using)
+		for local in forward_local_list:
+			self.remove_forward(local)
+
+	ADB._cleanup_forwards = _cleanup_forwards
+
+
+monkey_patch_for_airtest()
 
 
 class Momo:
@@ -213,7 +234,9 @@ class Momo:
 		self.walk_in_path(path_to_download)
 
 	@staticmethod
-	def walk_in_path(paths: List[UIObjectProxy], timeout=10):
+	def walk_in_path(paths: Union[List[UIObjectProxy], UIObjectProxy], timeout=10):
+		if not isinstance(paths, list):
+			paths = [paths]
 		for i in paths:
 			i.wait(timeout)
 			if i.exists():
