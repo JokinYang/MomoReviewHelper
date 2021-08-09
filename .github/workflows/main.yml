@@ -48,7 +48,7 @@ jobs:
         id: apk-cache
         with:
           path: ./${{ env.apk-file }}
-          key: ${{ env.apk-url }}-1
+          key: ${{ env.apk-url }}
       - name: download apk
         if: steps.apk-cache.outputs.cache-hit != 'true'
         run: |
@@ -85,5 +85,5 @@ jobs:
           script: |
             adb install -r -g ${{ env.apk-file }}
             adb shell pm list packages com.maimemo.android.momo
-            python main.py
+            #python main.py
       - run: cat *.md
