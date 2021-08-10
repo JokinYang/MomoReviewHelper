@@ -70,17 +70,19 @@ class Momo:
 		self.clear_cache()
 		self.launch()
 		self.__agree_treaty()
-		self.__goto_other_way_login_page()
-		self.__other_way_login(account, password)
+		# self.__goto_other_way_login_page()
+		return self.__other_way_login(account, password)
 
 	def __agree_treaty(self):
 		self.tv_agree.wait(self.timeout)
 		if self.tv_agree.exists():
+			print('tv agree')
 			return self.tv_agree.click()
 
 	def __goto_other_way_login_page(self):
 		self.login_other_way_button.wait(self.timeout)
 		if self.login_other_way_button.exists():
+			print('click login other way')
 			return self.login_other_way_button.click()
 
 	def __other_way_login(self, account, password, timeout=10):
@@ -89,6 +91,7 @@ class Momo:
 		self.login_other_way_page_submit_button.wait(self.timeout)
 		if not self.login_other_way_page_submit_button.exists():
 			return False
+		print('Login other way page exists')
 		self.login_other_way_page_account.set_text(str(account))
 		self.login_other_way_page_password.set_text(str(password))
 		if not self.login_other_way_page_term_cb.attr('checked'):
@@ -100,7 +103,7 @@ class Momo:
 		if self.login_other_way_page_error_hint.exists():
 			return self.login_other_way_page_error_hint.get_text()
 
-		self.main_page_container.wait(timeout=timeout)
+		self.main_page_container.wait(timeout=timeout + 5)
 		return self.main_page_container.exists()
 
 	def launch(self, relaunch=True):
@@ -346,8 +349,8 @@ def restart_adb(func):
 			try:
 				func()
 			except Exception as e:
-				os.system('echo "kill server";adb kill-server')
-				os.system('echo "start server";adb start-server')
+				os.system('echo "kill server";adb kill-server;sleep 2')
+				os.system('echo "start server";adb start-server;sleep 2')
 				os.system('echo "list devices";adb devices')
 				i += 1
 				print(e)
@@ -367,9 +370,9 @@ def main():
 	poco.device.wake()
 
 	momo = Momo(poco)
-	momo.launch()
+	momo.launch(relaunch=False)
 	print('Try to login')
-	momo.login_with_account(ACCOUNT, PASSWORD)
+	print(momo.login_with_account(ACCOUNT, PASSWORD))
 
 	if not momo.is_login():
 		print('Your account seem not login, please check your account & password!')
