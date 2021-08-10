@@ -337,35 +337,61 @@ class Momo:
 	last_book_btn: UIObjectProxy = property(lambda self: self.poco('com.maimemo.android.momo:id/selbk_tv_last_book'))
 
 
-ACCOUNT = os.environ.get('ACCOUNT', None)
-PASSWORD = os.environ.get('PASSWORD', None)
+def restart_adb(func):
+	i = 0
 
-# connect_device('Android:///192.168.0.108:5555')
-connect_device('Android:///')
-poco = AndroidUiautomationPoco()
-poco.device.wake()
+	def wrapper():
+		nonlocal i
+		while i < 3:
+			try:
+				func()
+			except Exception as e:
+				os.system('echo "kill server";adb kill-server')
+				os.system('echo "start server";adb start-server')
+				os.system('echo "list devices";adb devices')
+				i += 1
+				print(e)
+				continue
+			return
 
-momo = Momo(poco)
-momo.launch()
-print('Try to login')
-momo.login_with_account(ACCOUNT, PASSWORD)
+	return wrapper
 
-if not momo.is_login():
-	print('Your account seem not login, please check your account & password!')
-	sys.exit(-1)
 
-print("Start pull db")
-db_path = momo.pull_db()
-print(f'Using db:{db_path}')
-today_words = query_words(db_path)
-if not today_words:
-	print('Could not find words learn today.')
-	sys.exit(0)
-print(f'Find {len(today_words or [])} word learn today')
-print(today_words)
-word_obj = transfer_to_word_obj(today_words)
-print(f'Find {len(word_obj or [])} in database')
+@restart_adb
+def main():
+	ACCOUNT = os.environ.get('ACCOUNT', None)
+	PASSWORD = os.environ.get('PASSWORD', None)
+	raise Exception('aaaaaaaaaaaaaaaaaa')
+	# connect_device('Android:///192.168.0.108:5555')
+	connect_device('Android:///')
+	poco = AndroidUiautomationPoco()
+	poco.device.wake()
 
-p = PageGenerator(word_obj)
-md_path, _ = p.gen_md()
-print(f'Gen markdown file:{md_path}')
+	momo = Momo(poco)
+	momo.launch()
+	print('Try to login')
+	momo.login_with_account(ACCOUNT, PASSWORD)
+
+	if not momo.is_login():
+		print('Your account seem not login, please check your account & password!')
+		sys.exit(-1)
+
+	print("Start pull db")
+	db_path = momo.pull_db()
+	print(f'Using db:{db_path}')
+	today_words = query_words(db_path)
+	if not today_words:
+		print('Could not find words learn today.')
+		sys.exit(0)
+	print(f'Find {len(today_words or [])} word learn today')
+	print(today_words)
+	word_obj = transfer_to_word_obj(today_words)
+	print(f'Find {len(word_obj or [])} in database')
+
+	p = PageGenerator(word_obj)
+	md_path, _ = p.gen_md()
+	print(f'Gen markdown file:{md_path}')
+
+
+if __name__ == '__main__':
+	main()
