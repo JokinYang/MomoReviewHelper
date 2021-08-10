@@ -361,7 +361,6 @@ def restart_adb(func):
 def main():
 	ACCOUNT = os.environ.get('ACCOUNT', None)
 	PASSWORD = os.environ.get('PASSWORD', None)
-	raise Exception('aaaaaaaaaaaaaaaaaa')
 	# connect_device('Android:///192.168.0.108:5555')
 	connect_device('Android:///')
 	poco = AndroidUiautomationPoco()
