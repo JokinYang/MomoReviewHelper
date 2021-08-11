@@ -376,7 +376,7 @@ def main():
 
 	if not momo.is_login():
 		print('Your account seem not login, please check your account & password!')
-		sys.exit(-1)
+		raise Expection()
 
 	print("Start pull db")
 	db_path = momo.pull_db()
