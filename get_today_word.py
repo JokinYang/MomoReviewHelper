@@ -68,44 +68,44 @@ def main():
 	# d.app_clear(PACKAGE)
 	d.app_stop(PACKAGE)
 	d.app_start(PACKAGE, use_monkey=True)
-	#
-	# try:
-	# 	print('Click tv agree(if exists)')
-	# 	d(resourceId=ID.tv_agree).click_exists(TIMEOUT)
-	# except u2.exceptions.UiObjectNotFoundError as e:
-	# 	print(e)
-	# print('Login other way')
-	# d(resourceId=ID.login_other_ways_btn).click(timeout=20)
-	# # Start input account and password
-	# print('Agree treaty')
-	# d(resourceId=ID.identity_management_terms_cb).click(TIMEOUT)
-	# print('Input account')
-	# d(resourceId=ID.identity_management_account_et).set_text(ACCOUNT)
-	# print('Input password')
-	# d(resourceId=ID.identity_management_pwd_et).set_text(PASSWORD)
-	# print('Click login button')
-	# d(resourceId=ID.identity_management_confirm_btn).click(TIMEOUT)
-	# # Check login status
-	# if not d(resourceId=ID.main_page_container).exists(20):
-	# 	n = str(datetime.time().strftime('%c'))
-	# 	hierarchy = d.dump_hierarchy()
-	# 	with open(f'{n}.xml', 'w') as f:
-	# 		f.write(hierarchy)
-	# 	d.screenshot(f'{n}.jpg')
-	#
-	# 	raise Exception('Can not find main page')
-	# print('Go to setting')
-	# d(text=ID.setting_text).click(TIMEOUT)
-	# print('Go to back up and restore setting')
-	# d(text=ID.backup_and_restore_text).click(TIMEOUT)
-	# print('Download backup')
-	# d(resourceId=ID.tv_activity_backup_revert_study).click(TIMEOUT)
-	# print('Asure download')
-	# d(resourceId=ID.ok_button).click_exists(TIMEOUT)
-	# if d(text=' 还原成功！ ').exists(timeout=20):
-	# 	print('It is ok !!!')
-	# else:
-	# 	print('May not success')
+	
+	try:
+		print('Click tv agree(if exists)')
+		d(resourceId=ID.tv_agree).click_exists(TIMEOUT)
+	except u2.exceptions.UiObjectNotFoundError as e:
+		print(e)
+	print('Login other way')
+	d(resourceId=ID.login_other_ways_btn).click(timeout=20)
+	# Start input account and password
+	print('Agree treaty')
+	d(resourceId=ID.identity_management_terms_cb).click(TIMEOUT)
+	print('Input account')
+	d(resourceId=ID.identity_management_account_et).set_text(ACCOUNT)
+	print('Input password')
+	d(resourceId=ID.identity_management_pwd_et).set_text(PASSWORD)
+	print('Click login button')
+	d(resourceId=ID.identity_management_confirm_btn).click(TIMEOUT)
+	# Check login status
+	if not d(resourceId=ID.main_page_container).exists(20):
+		n = str(datetime.time().strftime('%c'))
+		hierarchy = d.dump_hierarchy()
+		with open(f'{n}.xml', 'w') as f:
+			f.write(hierarchy)
+		d.screenshot(f'{n}.jpg')
+	
+		raise Exception('Can not find main page')
+	print('Go to setting')
+	d(text=ID.setting_text).click(TIMEOUT)
+	print('Go to back up and restore setting')
+	d(text=ID.backup_and_restore_text).click(TIMEOUT)
+	print('Download backup')
+	d(resourceId=ID.tv_activity_backup_revert_study).click(TIMEOUT)
+	print('Asure download')
+	d(resourceId=ID.ok_button).click_exists(TIMEOUT)
+	if d(text=' 还原成功！ ').exists(timeout=20):
+		print('It is ok !!!')
+	else:
+		print('May not success')
 
 	c = ['adb', 'pull', '/data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db', './']
 	os.system('adb root;sleep 5')
