@@ -85,5 +85,7 @@ jobs:
           script: |
             adb install -r -g ${{ env.apk-file }}
             adb shell pm list packages com.maimemo.android.momo
-            python main.py
-      - run: cat *.md
+            python get_today_word.py
+      - run: |
+          cat *.md
+          cat *.xml
