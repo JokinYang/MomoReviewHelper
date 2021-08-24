@@ -91,4 +91,4 @@ jobs:
             python get_today_word.py
       - run: |
           cat *.md
-          cat *.xml
+          
