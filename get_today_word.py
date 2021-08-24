@@ -88,14 +88,16 @@ def main():
 	d(resourceId=ID.identity_management_confirm_btn).click(TIMEOUT)
 	# Check login status
 	if not d(resourceId=ID.main_page_container).exists(20):
-		n = str(datetime.time().strftime('%c'))
+		n = 'main_page_not_found'
 		hierarchy = d.dump_hierarchy()
 		with open(f'{n}.xml', 'w') as f:
 			f.write(hierarchy)
 		d.screenshot(f'{n}.jpg')
 		os.system(f'curl --upload-file ./{n}.jpg http://transfer.sh/{n}.jpg')
-		
-		raise u2.exceptions.UiObjectNotFoundError('Can not find main page')
+		os.system(f'curl --upload-file ./{n}.xml http://transfer.sh/{n}.xml')
+		print('Can not find main page')
+		return None
+
 	print('Go to setting')
 	d(text=ID.setting_text).click(TIMEOUT)
 	print('Go to back up and restore setting')
