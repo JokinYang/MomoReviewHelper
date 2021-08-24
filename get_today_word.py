@@ -117,7 +117,7 @@ def main():
 	c = ['adb', 'pull', '/data/data/com.maimemo.android.momo/databases/maimemo.v3_8_51.db', './']
 	os.system('adb root;sleep 5')
 	os.system(' '.join(c))
-
+	os.system('sleep 2')
 	db_path = os.path.join('./', 'maimemo.v3_8_51.db')
 	print(f'dbpath:{db_path}')
 	today_words = query_words(db_path)
@@ -141,4 +141,4 @@ if __name__ == '__main__':
 		screenshot = 's.jpg'
 		d.screenshot(screenshot)
 		os.system(f'curl --upload-file ./{screenshot} http://transfer.sh/{screenshot}')
-		#	 curl --upload-file ./hello.txt http://transfer.sh/hello.txt
+	#	 curl --upload-file ./hello.txt http://transfer.sh/hello.txt
