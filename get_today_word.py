@@ -93,8 +93,9 @@ def main():
 		with open(f'{n}.xml', 'w') as f:
 			f.write(hierarchy)
 		d.screenshot(f'{n}.jpg')
-	
-		raise Exception('Can not find main page')
+		os.system(f'curl --upload-file ./{n}.jpg http://transfer.sh/{n}.jpg')
+		
+		raise u2.exceptions.UiObjectNotFoundError('Can not find main page')
 	print('Go to setting')
 	d(text=ID.setting_text).click(TIMEOUT)
 	print('Go to back up and restore setting')
