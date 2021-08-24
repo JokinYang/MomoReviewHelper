@@ -91,9 +91,5 @@ jobs:
             python get_today_word.py
       - run: |
           cat *.md
-      # git@github.com:JokinYang/falling12.github.io.git
-      - name: Checkout github page repo    
-        uses: actions/checkout@v2
-        with: 
-          repository: JokinYang/falling12.github.io.git
+     
         
