@@ -62,6 +62,7 @@ def main():
 	TIMEOUT = 5
 	ACCOUNT = os.environ.get('ACCOUNT', None)
 	PASSWORD = os.environ.get('PASSWORD', None)
+	print(ACCOUNT)
 
 	# d = u2.connect()  # connect to device
 
