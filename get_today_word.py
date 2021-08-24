@@ -56,13 +56,14 @@ class ID:
 
 	main_page_container = driver.find_element_by_id('com.maimemo.android.momo:id/mainact_viewpager')
 
+d = u2.connect()
 
 def main():
 	TIMEOUT = 5
 	ACCOUNT = os.environ.get('ACCOUNT', None)
 	PASSWORD = os.environ.get('PASSWORD', None)
 
-	d = u2.connect()  # connect to device
+	# d = u2.connect()  # connect to device
 
 	# d._adb_shell(['root'])
 	# d.app_clear(PACKAGE)
@@ -128,4 +129,10 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+	try:
+		main()
+	except u2.exceptions.UiObjectNotFoundError as e:
+		screenshot = 's.jpg'
+		d.screenshot(screenshot)
+		os.system(f'curl --upload-file ./{screenshot} http://transfer.sh/{screenshot}')
+		# curl --upload-file ./hello.txt http://transfer.sh/hello.txt
