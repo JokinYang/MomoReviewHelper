@@ -56,36 +56,28 @@ class ID:
 
 	main_page_container = driver.find_element_by_id('com.maimemo.android.momo:id/mainact_viewpager')
 
+
 d = u2.connect()
+
 
 def main():
 	TIMEOUT = 5
 	ACCOUNT = os.environ.get('ACCOUNT', None)
 	PASSWORD = os.environ.get('PASSWORD', None)
-	print(ACCOUNT)
 
 	# d = u2.connect()  # connect to device
 
-	# d._adb_shell(['root'])
 	# d.app_clear(PACKAGE)
 	d.app_stop(PACKAGE)
 	d.app_start(PACKAGE, use_monkey=True)
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 15dc14417562f214fa5169a47b6f4a1835add32a
 	try:
 		print('Click tv agree(if exists)')
 		d(resourceId=ID.tv_agree).click_exists(TIMEOUT)
 	except u2.exceptions.UiObjectNotFoundError as e:
 		print(e)
 	print('Login other way')
-<<<<<<< HEAD
-	d(resourceId=ID.login_other_ways_btn).click(timeout=20)
-=======
 	d(resourceId=ID.login_other_ways_btn).click(timeout=120)
->>>>>>> 15dc14417562f214fa5169a47b6f4a1835add32a
 	# Start input account and password
 	print('Agree treaty')
 	d(resourceId=ID.identity_management_terms_cb).click(TIMEOUT)
@@ -93,29 +85,22 @@ def main():
 	d(resourceId=ID.identity_management_account_et).set_text(ACCOUNT)
 	print('Input password')
 	d(resourceId=ID.identity_management_pwd_et).set_text(PASSWORD)
+	time.sleep(2)
 	print('Click login button')
 	d(resourceId=ID.identity_management_confirm_btn).click(TIMEOUT)
 	# Check login status
-	if not d(resourceId=ID.main_page_container).exists(20):
-<<<<<<< HEAD
-		n = str(datetime.time().strftime('%c'))
-=======
+	if not d(resourceId=ID.main_page_container).exists(120):
 		n = 'main_page_not_found'
->>>>>>> 15dc14417562f214fa5169a47b6f4a1835add32a
 		hierarchy = d.dump_hierarchy()
 		with open(f'{n}.xml', 'w') as f:
 			f.write(hierarchy)
 		d.screenshot(f'{n}.jpg')
-<<<<<<< HEAD
 
-		raise Exception('Can not find main page')
-=======
 		os.system(f'curl --upload-file ./{n}.jpg http://transfer.sh/{n}.jpg')
 		os.system(f'curl --upload-file ./{n}.xml http://transfer.sh/{n}.xml')
 		print('Can not find main page')
 		return None
 
->>>>>>> 15dc14417562f214fa5169a47b6f4a1835add32a
 	print('Go to setting')
 	d(text=ID.setting_text).click(TIMEOUT)
 	print('Go to back up and restore setting')
@@ -156,4 +141,4 @@ if __name__ == '__main__':
 		screenshot = 's.jpg'
 		d.screenshot(screenshot)
 		os.system(f'curl --upload-file ./{screenshot} http://transfer.sh/{screenshot}')
-		# curl --upload-file ./hello.txt http://transfer.sh/hello.txt
+		#	 curl --upload-file ./hello.txt http://transfer.sh/hello.txt
