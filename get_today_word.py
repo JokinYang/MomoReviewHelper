@@ -77,7 +77,7 @@ def main():
 	except u2.exceptions.UiObjectNotFoundError as e:
 		print(e)
 	print('Login other way')
-	d(resourceId=ID.login_other_ways_btn).click(timeout=20)
+	d(resourceId=ID.login_other_ways_btn).click(timeout=120)
 	# Start input account and password
 	print('Agree treaty')
 	d(resourceId=ID.identity_management_terms_cb).click(TIMEOUT)

@@ -83,6 +83,9 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
+            export PASSWORD=${{ env.PASSWORD }}
+            export ACCOUNT=${{ env.ACCOUNT }}
+            echo $ACCOUNT
             adb install -r -g ${{ env.apk-file }}
             adb shell pm list packages com.maimemo.android.momo
             python get_today_word.py
