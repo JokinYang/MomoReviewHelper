@@ -21,7 +21,7 @@ jobs:
           ref: gh-pages
       - name: Check page exists
         id: checkPageExists
-      - run: |
+        run: |
           import os;
           print("::set-output name=NEED_RUN::1")
         shell: python
