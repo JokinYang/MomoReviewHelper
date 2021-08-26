@@ -14,16 +14,26 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       NEED_RUN: ${{ steps.checkPageExists.outputs.NEED_RUN }}
-    
+      TIMESTAMP: ${{ steps.checkPageExists.outputs.TIMESTAMP }}
+
     steps:
       - uses: actions/checkout@v2
-        with: 
+        with:
           ref: gh-pages
       - name: Check page exists
         id: checkPageExists
         run: |
-          import os;
-          print("::set-output name=NEED_RUN::1")
+          from datetime import *
+          import os
+          import re
+
+          now = datetime.now(timezone(timedelta(hours=8)))
+          delta = 1 if now.time() < time(4, 0, 0) else 0
+          timestamp = '{:%Y%m%d}'.format(now.today() - timedelta(delta))
+          print('::set-output name=TIMESTAMP::{}'.format(timestamp))
+
+          exists = any(filter(lambda x: os.path.isfile(x) and re.match('.*{}.*'.format(timestamp), x), os.listdir('./')))
+          print('::set-output name=NEED_RUN::{}'.format(int(not exists)))
         shell: python
 
 
@@ -42,6 +52,8 @@ jobs:
       # env for memo login
       ACCOUNT: ${{ secrets.ACCOUNT }}
       PASSWORD: ${{ secrets.PASSWORD }}
+      # timestamp of generated file
+      TIMESTAMP: ${{ needs.check-necessary.outputs.TIMESTAMP }}
 
     steps:
       - uses: actions/checkout@v2
@@ -103,23 +115,21 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            export PASSWORD=${{ env.PASSWORD }}
-            export ACCOUNT=${{ env.ACCOUNT }}
-            
             adb install -r -g ${{ env.apk-file }}
             adb shell pm list packages com.maimemo.android.momo
             python get_today_word.py
       - run: |
           cat *.md
-        
-      - name: push gh pages
+
+      - name: push to GitHub Pages
         uses: actions/checkout@v2
-        with: 
+        with:
           ref: gh-pages
       - run: |
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            #git add -u 
-            #git commit -m "generated"
-            #git push
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ${TIMESTAMP}*
+          git add -u
+          git commit -m "Generate review of ${TIMESTAMP}"
+          git push
           
