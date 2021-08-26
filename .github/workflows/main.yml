@@ -126,9 +126,10 @@ jobs:
         with:
           ref: gh-pages
       - run: |
+          ls 
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add ${TIMESTAMP}*
+          git add "${TIMESTAMP}*"
           git add -u
           git commit -m "Generate review of ${TIMESTAMP}"
           git push
