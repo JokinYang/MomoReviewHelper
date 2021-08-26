@@ -5,11 +5,14 @@ from typing import List
 
 class PageGenerator:
 	def __init__(self, words: List[WordDetail], date: datetime.date = None):
-		self.date = date or datetime.datetime.today()
+		self.date = date or datetime.datetime.now(
+			datetime.timezone(datetime.timedelta(hours=8)))
 		self.words = words
 
 	def gen_md(self, output_path=None):
-		output_path = output_path or '{:%Y%m%d}.md'.format(self.date)
+		delta = 1 if self.date.time() < datetime.time(4, 0, 0) else 0
+		timestamp = '{:%Y%m%d}'.format(self.date.today() - datetime.timedelta(delta))
+		output_path = output_path or '{}.md'.format(timestamp)
 		content = ''.join([self._gen_head(), self._gen_body()])
 		with open(output_path, 'w') as f:
 			f.write(content)
