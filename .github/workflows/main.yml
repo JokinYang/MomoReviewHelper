@@ -31,7 +31,7 @@ jobs:
           print("Time  with   tz:"+str(now))
           
           print("Time without tz:"+str(datetime.now()))
-          print('Timestamp without tz:{:%Y%m%d}'.format(datetime.now().today())
+          print('Timestamp without tz:{:%Y%m%d}'.format(datetime.now().today()))
 
           delta = 1 if now.time() < time(4, 0, 0) else 0
           print("Delta :"+str(delta))
