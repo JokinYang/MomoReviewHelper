@@ -28,6 +28,9 @@ jobs:
           import re
 
           now = datetime.now(timezone(timedelta(hours=8)))
+          print(now)
+          now = datetime.now()
+          print(now)
           delta = 1 if now.time() < time(4, 0, 0) else 0
           timestamp = '{:%Y%m%d}'.format(now.today() - timedelta(delta))
           print('::set-output name=TIMESTAMP::{}'.format(timestamp))
