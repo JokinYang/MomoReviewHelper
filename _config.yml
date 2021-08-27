@@ -1,1 +1,8 @@
 theme: jekyll-theme-tactile
+
+plugins:
+  - jekyll-feed
+
+title: 墨墨复习助手
+description: Its a feed of the daily words I try to remember
+author: Jokin
