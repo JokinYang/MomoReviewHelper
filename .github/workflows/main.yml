@@ -2,7 +2,7 @@ name: CI
 on:
   schedule:
     # Runs every 10th minute past the 12, 17 and 23rd hour.
-    - cron: '10 12,17,23 * * *'
+    - cron: '10 3,12,17,23 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -28,12 +28,14 @@ jobs:
           import re
 
           now = datetime.now(timezone(timedelta(hours=8)))
-          print(now)
-          now = datetime.now()
-          print(now)
+          print("Time  with   tz:"+str(now))
+          
+          print("Time without tz:"+str(datetime.now()))
           delta = 1 if now.time() < time(4, 0, 0) else 0
+          print("Delta :"+str(delta))
           timestamp = '{:%Y%m%d}'.format(now.today() - timedelta(delta))
           print('::set-output name=TIMESTAMP::{}'.format(timestamp))
+          print("Timestamp:"+str(timestamp))
 
           exists = any(filter(lambda x: os.path.isfile(x) and re.match('.*{}.*'.format(timestamp), x), os.listdir('./')))
           print('::set-output name=NEED_RUN::{}'.format(int(not exists)))
