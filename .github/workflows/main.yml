@@ -31,11 +31,13 @@ jobs:
           print("Time  with   tz:"+str(now))
           
           print("Time without tz:"+str(datetime.now()))
+          print('Timestamp without tz:{:%Y%m%d}'.format(datetime.now().today())
+
           delta = 1 if now.time() < time(4, 0, 0) else 0
           print("Delta :"+str(delta))
           timestamp = '{:%Y%m%d}'.format(now.today() - timedelta(delta))
           print('::set-output name=TIMESTAMP::{}'.format(timestamp))
-          print("Timestamp:"+str(timestamp))
+          print("Timestamp with tz:"+str(timestamp))
 
           exists = any(filter(lambda x: os.path.isfile(x) and re.match('.*{}.*'.format(timestamp), x), os.listdir('./')))
           print('::set-output name=NEED_RUN::{}'.format(int(not exists)))
