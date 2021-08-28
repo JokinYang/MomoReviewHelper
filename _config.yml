@@ -1,12 +1,8 @@
 theme: jekyll-theme-tactile
 
-title: 墨墨复习助手
-description: Its a feed of the daily words I try to remember
+title: Maimemo Review Helper
+description: Rome wasn’t built in one day.
 author: Jokin
 
-source: ./
-
-plugins:
-  - jekyll-feed-
 
 
