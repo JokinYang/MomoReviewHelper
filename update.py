@@ -44,7 +44,7 @@ layout: none
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
-        <title>默默复习助手</title>
+        <title>墨墨复习助手</title>
         <description>a feed help remember words</description>
         <link>{HOST}</link>
         {item}
