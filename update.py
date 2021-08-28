@@ -42,15 +42,14 @@ layout: none
 ---
  
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>{{ site.name }}</title>
-		<description>{{ site.description }}</description>
-		<link>{{ site.baseurl}}{{ site.url }}</link>
-		<atom:link href="{{ site.baseurl}}{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-		{item}
-	</channel>
-</rss>""".format(item=items))
+<rss version="2.0">
+    <channel>
+        <title>默默复习助手</title>
+        <description>a feed help remember words</description>
+        <link>{HOST}</link>
+        {item}
+    </channel>
+</rss>""".format(item=items, HOST=HOST))
     with open('feed.xml', 'w') as f:
         f.write(rss)
 

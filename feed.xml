@@ -3,13 +3,12 @@ layout: none
 ---
  
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>{ site.name }</title>
-		<description>{ site.description }</description>
-		<link>{ site.baseurl}{ site.url }</link>
-		<atom:link href="{ site.baseurl}{ site.url }/feed.xml" rel="self" type="application/rss+xml" />
-		
+<rss version="2.0">
+    <channel>
+        <title>默默复习助手</title>
+        <description>a feed help remember words</description>
+        <link>{{ site.url }}{{ site.baseurl }}/</link>
+        
         <item>
             <title>20210828</title>
             <description>20210828</description>
@@ -38,5 +37,5 @@ layout: none
             <link>{{ site.url }}{{ site.baseurl }}/20210825</link>
             <guid>{{ site.url }}{{ site.baseurl }}/20210825</guid>
         </item>
-	</channel>
+    </channel>
 </rss>
