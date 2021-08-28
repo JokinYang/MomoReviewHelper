@@ -1,4 +1,5 @@
 import os
+from email.utils import format_datetime
 import datetime
 
 preclude = {'_config.yml', 'update.py', 'CNAME', 'feed.xml', 'index.md'}
@@ -26,11 +27,12 @@ def gen_feed(file_list):
             date = datetime.datetime.strptime(i, '%Y%m%d')
         except ValueError:
             date = datetime.datetime.now()
+        date = format_datetime(date)
         items += """
         <item>
             <title>{title}</title>
             <description>{description}</description>
-            <pubDate>{{ {date} | date_to_rfc822 }}</pubDate>
+            <pubDate>{date}</pubDate>
             <link>{url}</link>
             <guid>{url}</guid>
         </item>""".format(title=i, description=i, date=date,
@@ -38,18 +40,16 @@ def gen_feed(file_list):
     rss = ("""---
 layout: none
 ---
+ 
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ site.baseurl}}{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jokin</generator>
-    {item}
-  </channel>
+	<channel>
+		<title>{{ site.name }}</title>
+		<description>{{ site.description }}</description>
+		<link>{{ site.baseurl}}{{ site.url }}</link>
+		<atom:link href="{{ site.baseurl}}{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+		{item}
+	</channel>
 </rss>""".format(item=items))
     with open('feed.xml', 'w') as f:
         f.write(rss)
@@ -61,7 +61,7 @@ def gen_index(file_list):
         i = os.path.splitext(f)[0]
         items += """[{des}]({url})  \n""".format(des=i, url='{}{}'.format(HOST, i))
     index = (
-        "[GitHub](https://github.com/JokinYang/MomoReviewHelper) [RSS]({host}feed.xml)\n"
+        "[GitHub](https://github.com/JokinYang/MomoReviewHelper) [RSS]({host}feed.xml)  \n"
         "{items}"
             .format(host=HOST, items=items)
     )

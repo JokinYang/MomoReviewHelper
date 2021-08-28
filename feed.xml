@@ -5,35 +5,36 @@ layout: none
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>{{ site.name }}</title>
-		<description>{{ site.description }}</description>
-		<link>{{ site.baseurl}}{{ site.url }}</link>
-		<atom:link href="{{ site.baseurl}}{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
- <item>
+		<title>{ site.name }</title>
+		<description>{ site.description }</description>
+		<link>{ site.baseurl}{ site.url }</link>
+		<atom:link href="{ site.baseurl}{ site.url }/feed.xml" rel="self" type="application/rss+xml" />
+		
+        <item>
             <title>20210828</title>
             <description>20210828</description>
-            <pubDate>{ 2021-08-28 00:00:00 | date_to_rfc822 }</pubDate>
+            <pubDate>Sat, 28 Aug 2021 00:00:00 -0000</pubDate>
             <link>{{ site.url }}{{ site.baseurl }}/20210828</link>
             <guid>{{ site.url }}{{ site.baseurl }}/20210828</guid>
         </item>
         <item>
             <title>20210827</title>
             <description>20210827</description>
-            <pubDate>{ 2021-08-27 00:00:00 | date_to_rfc822 }</pubDate>
+            <pubDate>Fri, 27 Aug 2021 00:00:00 -0000</pubDate>
             <link>{{ site.url }}{{ site.baseurl }}/20210827</link>
             <guid>{{ site.url }}{{ site.baseurl }}/20210827</guid>
         </item>
         <item>
             <title>20210826</title>
             <description>20210826</description>
-            <pubDate>{ 2021-08-26 00:00:00 | date_to_rfc822 }</pubDate>
+            <pubDate>Thu, 26 Aug 2021 00:00:00 -0000</pubDate>
             <link>{{ site.url }}{{ site.baseurl }}/20210826</link>
             <guid>{{ site.url }}{{ site.baseurl }}/20210826</guid>
         </item>
         <item>
             <title>20210825</title>
             <description>20210825</description>
-            <pubDate>{ 2021-08-25 00:00:00 | date_to_rfc822 }</pubDate>
+            <pubDate>Wed, 25 Aug 2021 00:00:00 -0000</pubDate>
             <link>{{ site.url }}{{ site.baseurl }}/20210825</link>
             <guid>{{ site.url }}{{ site.baseurl }}/20210825</guid>
         </item>
