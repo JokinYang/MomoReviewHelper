@@ -1,4 +1,7 @@
 import os
+import re
+import sys
+import xml
 from email.utils import format_datetime
 import datetime
 
@@ -19,9 +22,19 @@ files = sorted(
 files_for_feed = sorted(files[:int(len(files) * ratio)])
 
 
+def gen_des_for_feed(md_file):
+    if not os.path.exists(md_file):
+        return 'Can not find file:{}'.format(md_file)
+    with open(md_file, 'r') as f:
+        md_content = f.read()
+    pieces = re.findall(r'<summary+(?:\s+[a-zA-Z]+=".*")*>(.*)</summary+(?:\s+[a-zA-Z]+=".*")*>', md_content)
+    return '\n'.join(map(lambda x: '<p>{}</p>'.format(x), pieces))
+
+
 def gen_feed(file_list):
     items = ''
     for f in file_list:
+        des = gen_des_for_feed(f)
         i = os.path.splitext(f)[0]
         try:
             date = datetime.datetime.strptime(i, '%Y%m%d')
@@ -35,7 +48,7 @@ def gen_feed(file_list):
             <pubDate>{date}</pubDate>
             <link>{url}</link>
             <guid>{url}</guid>
-        </item>""".format(title=i, description=i, date=date,
+        </item>""".format(title=i, description=des, date=date,
                           url='{}{}'.format(HOST, i))
     rss = ("""---
 layout: none
@@ -69,4 +82,6 @@ def gen_index(file_list):
 
 
 gen_feed(files)
+print('Updated feed.xml')
 gen_index(files)
+print('Updated index.html')
