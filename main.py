@@ -23,27 +23,12 @@ def get_local_adb_path():
 
 def monkey_patch_for_airtest():
 	import platform
-	from copy import copy
 	from airtest.core.android import constant
-	from airtest.core.android.adb import ADB
 	# use host adb for airtest to avoid the device offline error
 	system = platform.system()
 	machine = platform.machine()
 	constant.DEFAULT_ADB_PATH['{}-{}'.format(system, machine)] = get_local_adb_path()
 
-	def _cleanup_forwards(self):
-		"""
-		Remove the local forward ports
-		Returns:
-			None
-		"""
-		# remove forward成功后，会改变self._forward_local_using的内容，因此需要copy一遍
-		# After remove_forward() is successful, self._forward_local_using will be changed, so it needs to be copied
-		forward_local_list = copy(self._forward_local_using)
-		for local in forward_local_list:
-			self.remove_forward(local)
-
-	ADB._cleanup_forwards = lambda self: None  # do nothing for clean forwards
 
 
 monkey_patch_for_airtest()
