@@ -5,10 +5,15 @@ from typing import List
 
 class PageGenerator:
     def __init__(self, words: List[WordDetail], date: datetime.date = None):
-        self.date = date or datetime.datetime.now(
-            datetime.timezone(datetime.timedelta(hours=8)))
-        delta = 1 if self.date.time() < datetime.time(4, 0, 0) else 0
-        self.timestamp = '{:%Y%m%d}'.format(self.date.today() - datetime.timedelta(delta))
+        if date:
+            self.date = date
+            delta = 0
+        else:
+            self.date = datetime.datetime.now(
+                datetime.timezone(datetime.timedelta(hours=8)))
+            delta = 1 if self.date.time() < datetime.time(4, 0, 0) else 0
+
+        self.timestamp = '{:%Y%m%d}'.format(self.date.date() - datetime.timedelta(delta))
 
         self.words = words
 
