@@ -28,8 +28,7 @@ def gen_des_for_feed(md_file):
     with open(md_file, 'r') as f:
         md_content = f.read()
     pieces = re.findall(r'<summary+(?:\s+[a-zA-Z]+=".*")*>(.*)</summary+(?:\s+[a-zA-Z]+=".*")*>', md_content)
-
-    return saxutils.escape('\n'.join(map(lambda x: '<p>{}</p>'.format(x), pieces)))
+    return '\n'.join(map(lambda x: '<p>{}</p>'.format(x), pieces))
 
 
 def gen_feed(file_list):
@@ -49,7 +48,7 @@ def gen_feed(file_list):
             <pubDate>{date}</pubDate>
             <link>{url}</link>
             <guid>{url}</guid>
-        </item>""".format(title=i, description=des, date=date,
+        </item>""".format(title=saxutils.escape(i), description=saxutils.escape(des), date=date,
                           url='{}{}'.format(HOST, i))
     rss = ("""---
 layout: none
