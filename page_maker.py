@@ -48,11 +48,11 @@ const translates = document.querySelectorAll('.{tr}');
 """.format(d=self.details_class, tr=self.interpretation_class) + """
 details.forEach((item, index) => item.addEventListener('toggle', () => {
     if (item.open) {
-        translates[index].style.display = 'inline-block';
+        translates[index].style.display = 'block';
     } else translates[index].style.display = 'none';
 }));
-</script>""")
-        content = style + script + content
+</script>\n""")
+        content = style + content + script
         with open(output_path, 'w') as f:
             f.write(content)
         return output_path, content
@@ -74,9 +74,11 @@ details.forEach((item, index) => item.addEventListener('toggle', () => {
         en, ch = phrase_choose
         en = en.replace(word.word, f'<strong>{word.word}</strong>')
         i = """
-<div><h2 style="display: inline-block;margin-bottom: 0;margin-top: 0">{word}</h2>
-    <p style="display: inline-block; padding:0 .5em; margin: 0;font-family: monospace;">{phonetic}</p>
-    <p class="{inter_class}" style="display: inline-block; padding:0 .5em; margin: 0;">{interpretation}</p></div>
+<div style="display: flex;align-items: baseline;">
+    <h2 style="margin-bottom: 0;margin-top: 0">{word}</h2>
+    <p style="padding:0 .5em; margin: 0;font-family: monospace;">{phonetic}</p>
+    <p class="{inter_class}" style="display:none ;padding:0 .5em; margin: 0; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{interpretation}</p>
+</div>
 <details class="{detail_class}">
     <summary style="color: #303030;">{en}</summary>
     {ch}
