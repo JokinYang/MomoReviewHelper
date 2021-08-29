@@ -1,7 +1,5 @@
 theme: jekyll-theme-tactile
-url: https://blog.5p2o.com
-baseurl: ''
-repository: https://github.com/JokinYang/MomoReviewHelper
+
 timezone: Asia/Shanghai
 
 title: Maimemo Review Helper
