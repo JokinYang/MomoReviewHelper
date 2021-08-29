@@ -1,4 +1,7 @@
 theme: jekyll-theme-tactile
+url: https://blog.5p2o.com
+repository: https://github.com/JokinYang/MomoReviewHelper
+timezone: Asia/Shanghai
 
 title: Maimemo Review Helper
 description: Rome wasn’t built in one day.
