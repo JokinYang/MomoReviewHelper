@@ -36,11 +36,11 @@ jobs:
           print("Time  with   tz:"+str(now))
 
           print("Time without tz:"+str(datetime.now()))
-          print('Timestamp without tz:{:%Y%m%d}'.format(datetime.now().today()))
+          print('Timestamp without tz:{:%Y%m%d}'.format(datetime.now().date()))
 
           delta = 1 if now.time() < time(4, 0, 0) else 0
           print("Delta :"+str(delta))
-          timestamp = '{:%Y%m%d}'.format(now.today() - timedelta(delta))
+          timestamp = '{:%Y%m%d}'.format(now.date() - timedelta(delta))
           print('::set-output name=TIMESTAMP::{}'.format(timestamp))
           print("Timestamp with tz:"+str(timestamp))
 
