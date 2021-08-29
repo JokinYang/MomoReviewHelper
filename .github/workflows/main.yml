@@ -1,13 +1,13 @@
 name: CI
 on:
   schedule:
-    # Runs every 10th minute past the 12, 17 and 23rd hour.
-    - cron: '10 3,12,17,23 * * *'
+    # Runs every 10th minute past UTC+8 the 3 , 10, 17 and 20rd hour.
+    - cron: '10 19,2,9,12 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       fullRun:
-        description: 'if run all steps'
+        description: 'if run all steps,pass 1 to full run'
         required: false
         default: '0'
 
@@ -22,6 +22,10 @@ jobs:
       TIMESTAMP: ${{ steps.checkPageExists.outputs.TIMESTAMP }}
 
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with: 
+          timezoneLinux: "Asia/Shanghai"
+          timezoneMacos: "Asia/Shanghai"
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
@@ -69,6 +73,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - uses: szenius/set-timezone@v1.0
+        with: 
+          timezoneLinux: "Asia/Shanghai"
+          timezoneMacos: "Asia/Shanghai"
 
       #### 1. setup python
       - name: setup-python
