@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-import xml
+from xml.sax import saxutils
 from email.utils import format_datetime
 import datetime
 
@@ -28,7 +28,8 @@ def gen_des_for_feed(md_file):
     with open(md_file, 'r') as f:
         md_content = f.read()
     pieces = re.findall(r'<summary+(?:\s+[a-zA-Z]+=".*")*>(.*)</summary+(?:\s+[a-zA-Z]+=".*")*>', md_content)
-    return '\n'.join(map(lambda x: '<p>{}</p>'.format(x), pieces))
+
+    return saxutils.escape('\n'.join(map(lambda x: '<p>{}</p>'.format(x), pieces)))
 
 
 def gen_feed(file_list):
