@@ -1,7 +1,7 @@
 ---
 layout: none
 ---
-
+ 
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
@@ -9,6 +9,70 @@ layout: none
         <description>a feed help remember words</description>
         <link>{{ site.url }}{{ site.baseurl }}/</link>
         
+        <item>
+            <title>20210830</title>
+            <description>&lt;p&gt;Climate and weather &lt;strong&gt;affect&lt;/strong&gt; every aspect of our life.&lt;/p&gt;
+&lt;p&gt;Yes, a &lt;strong&gt;bachelor&lt;/strong&gt;'s degree opens more doors.&lt;/p&gt;
+&lt;p&gt;The old gentleman won't have bad &lt;strong&gt;behaviour&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;They had the chicken &lt;strong&gt;breast&lt;/strong&gt; for lunch.&lt;/p&gt;
+&lt;p&gt;They &lt;strong&gt;carve&lt;/strong&gt; the wood into a figure.&lt;/p&gt;
+&lt;p&gt;She had carefully &lt;strong&gt;chart&lt;/strong&gt;ed her route to the top of her profession.&lt;/p&gt;
+&lt;p&gt;The shop has &lt;strong&gt;choice&lt;/strong&gt; cloth.&lt;/p&gt;
+&lt;p&gt;School education helped to &lt;strong&gt;civilise&lt;/strong&gt; the people.&lt;/p&gt;
+&lt;p&gt;No horse has a speed &lt;strong&gt;comparable&lt;/strong&gt; to that of his.&lt;/p&gt;
+&lt;p&gt;He can't grasp the &lt;strong&gt;concept&lt;/strong&gt; of math.&lt;/p&gt;
+&lt;p&gt;I have not let reality &lt;strong&gt;contaminate&lt;/strong&gt; her innocence.&lt;/p&gt;
+&lt;p&gt;Copyright expires 50 years after the death of the author.&lt;/p&gt;
+&lt;p&gt;Are you the &lt;strong&gt;culprit&lt;/strong&gt; who broke this window?&lt;/p&gt;
+&lt;p&gt;He &lt;strong&gt;damp&lt;/strong&gt;ed a towel and wrapped it around his leg.&lt;/p&gt;
+&lt;p&gt;He made a &lt;strong&gt;dash&lt;/strong&gt; towards the house.&lt;/p&gt;
+&lt;p&gt;Many advertisements &lt;strong&gt;exaggerate&lt;/strong&gt; the usefulness of the products.&lt;/p&gt;
+&lt;p&gt;You have to pay for &lt;strong&gt;excess&lt;/strong&gt; luggage on a plane.&lt;/p&gt;
+&lt;p&gt;There is concern that the giant panda will soon become &lt;strong&gt;extinct&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;He received a medal for his heroic &lt;strong&gt;feat&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The teacher will give you &lt;strong&gt;feedback&lt;/strong&gt; on the test.&lt;/p&gt;
+&lt;p&gt;The loud thunder gave me a &lt;strong&gt;fright&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Furthermore, humans have the ability to modify the environment in which they live.&lt;/p&gt;
+&lt;p&gt;She is a &lt;strong&gt;gossip&lt;/strong&gt; and often speaks evil of others.&lt;/p&gt;
+&lt;p&gt;That is a lucky &lt;strong&gt;guess&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Inertia carried the plane onto the ground.&lt;/p&gt;
+&lt;p&gt;I &lt;strong&gt;interpret&lt;/strong&gt; his answer as a refusal.&lt;/p&gt;
+&lt;p&gt;People were shocked by the &lt;strong&gt;magnitude&lt;/strong&gt; of the crisis.&lt;/p&gt;
+&lt;p&gt;This riot is a &lt;strong&gt;manifestation&lt;/strong&gt; of people's discontent.&lt;/p&gt;
+&lt;p&gt;Do you know how to &lt;strong&gt;manipulate&lt;/strong&gt; a computer ?&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;missile&lt;/strong&gt; hit the ship and sank it.&lt;/p&gt;
+&lt;p&gt;Lack of money will &lt;strong&gt;necessitate&lt;/strong&gt; a change of plan.&lt;/p&gt;
+&lt;p&gt;He asked his &lt;strong&gt;nephew&lt;/strong&gt; to execute his will.&lt;/p&gt;
+&lt;p&gt;It is a &lt;strong&gt;nuisance&lt;/strong&gt; to take classes every day.&lt;/p&gt;
+&lt;p&gt;I climbed a hill for a &lt;strong&gt;panorama&lt;/strong&gt; of the valley.&lt;/p&gt;
+&lt;p&gt;The children wanted to &lt;strong&gt;pat&lt;/strong&gt; the rabbit.&lt;/p&gt;
+&lt;p&gt;The puppy is so thin and &lt;strong&gt;pathetic&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I'm a little &lt;strong&gt;pessimistic&lt;/strong&gt; about our team's chances to win.&lt;/p&gt;
+&lt;p&gt;This land is rich with &lt;strong&gt;petroleum&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This decision creates a dangerous &lt;strong&gt;precedent&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Using other people for one's own &lt;strong&gt;profit&lt;/strong&gt; is immoral.&lt;/p&gt;
+&lt;p&gt;Nothing will &lt;strong&gt;prosper&lt;/strong&gt; in his hands.&lt;/p&gt;
+&lt;p&gt;If you plant pride, you will &lt;strong&gt;reap&lt;/strong&gt; destruction.&lt;/p&gt;
+&lt;p&gt;They &lt;strong&gt;remark&lt;/strong&gt; that the article was well written.&lt;/p&gt;
+&lt;p&gt;Today you should &lt;strong&gt;repay&lt;/strong&gt; the debt.&lt;/p&gt;
+&lt;p&gt;After morning exercises, the classes went to their &lt;strong&gt;respective&lt;/strong&gt; rooms.&lt;/p&gt;
+&lt;p&gt;Their &lt;strong&gt;retention&lt;/strong&gt; of public property is illegal.&lt;/p&gt;
+&lt;p&gt;It's hard to stay &lt;strong&gt;sane&lt;/strong&gt; under such awful pressure.&lt;/p&gt;
+&lt;p&gt;It's hard to &lt;strong&gt;separate&lt;/strong&gt; the two fighting boys.&lt;/p&gt;
+&lt;p&gt;He loves his &lt;strong&gt;spouse&lt;/strong&gt; deeply.&lt;/p&gt;
+&lt;p&gt;I would like some &lt;strong&gt;steak&lt;/strong&gt; and bread.&lt;/p&gt;
+&lt;p&gt;His legs felt &lt;strong&gt;stiff&lt;/strong&gt; from having sat for so long.&lt;/p&gt;
+&lt;p&gt;Puppets are worked by the &lt;strong&gt;string&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There is no &lt;strong&gt;substantial&lt;/strong&gt; connection between these two sentences.&lt;/p&gt;
+&lt;p&gt;There were &lt;strong&gt;subtle&lt;/strong&gt; hints in his letter.&lt;/p&gt;
+&lt;p&gt;There is a very high &lt;strong&gt;tariff&lt;/strong&gt; on jewelry.&lt;/p&gt;
+&lt;p&gt;This new &lt;strong&gt;technique&lt;/strong&gt; will boost our food production.&lt;/p&gt;
+&lt;p&gt;This idealistic concept is at &lt;strong&gt;variance&lt;/strong&gt; with reality.&lt;/p&gt;
+&lt;p&gt;There is no other way &lt;strong&gt;whereby&lt;/strong&gt; we can cross the river.&lt;/p&gt;</description>
+            <pubDate>Mon, 30 Aug 2021 00:00:00 -0000</pubDate>
+            <link>{{ site.url }}{{ site.baseurl }}/20210830</link>
+            <guid>{{ site.url }}{{ site.baseurl }}/20210830</guid>
+        </item>
         <item>
             <title>20210829</title>
             <description>&lt;p&gt;I am an &lt;strong&gt;absolute&lt;/strong&gt; beginner.&lt;/p&gt;
