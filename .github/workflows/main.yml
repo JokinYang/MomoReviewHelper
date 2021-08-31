@@ -155,6 +155,6 @@ jobs:
           python3 update.py
           git add "${TIMESTAMP}*" || echo "Bypass the error"
           git add -u
-          git commit -m "Generate review of ${TIMESTAMP}"
+          git commit -m "Generate review of ${TIMESTAMP}"  || echo "Bypass the arror"
           git push
           
