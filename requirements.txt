@@ -1,4 +1,4 @@
 airtest~=1.2.2
-pocoui~=1.0.82
+pocoui~=1.0.83
 SQLAlchemy~=1.4.22
 uiautomator2~=2.16.7
