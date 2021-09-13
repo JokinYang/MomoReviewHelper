@@ -140,7 +140,20 @@ def main():
     print(f'Gen markdown file:{md_path}')
 
 
+def timeout(t=20 * 60):
+    import threading
+    threading.Thread(
+        target=lambda: (
+            time.sleep(t),
+            sys.stderr.write('Timeout[{}] to wait the process finished'.format(t)),
+            os.abort(),
+        ),
+        daemon=True
+    ).start()
+
+
 if __name__ == '__main__':
+    timeout()
     try:
         main()
     except u2.exceptions.UiObjectNotFoundError as e:
