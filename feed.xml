@@ -10,6 +10,21 @@ layout: none
         <link>{{ site.url }}{{ site.baseurl }}/</link>
         
         <item>
+            <title>20211226</title>
+            <description>&lt;p&gt;She made a &lt;strong&gt;pot&lt;/strong&gt; of coffee.&lt;/p&gt;
+&lt;p&gt;The dishonest government official was &lt;strong&gt;publicly&lt;/strong&gt; disgraced.&lt;/p&gt;
+&lt;p&gt;We have to &lt;strong&gt;refine&lt;/strong&gt; on our methods of advertising.&lt;/p&gt;
+&lt;p&gt;There was a fight and the &lt;strong&gt;resultant&lt;/strong&gt; damage was serious.&lt;/p&gt;
+&lt;p&gt;There isn't a &lt;strong&gt;stain&lt;/strong&gt; on her reputation.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;stationary&lt;/strong&gt; object is easy to be aimed at.&lt;/p&gt;
+&lt;p&gt;Sweat poured down from her face.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;typhoon&lt;/strong&gt; pulled up many trees by the roots.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;youngster&lt;/strong&gt; hated being treated as a coward.&lt;/p&gt;</description>
+            <pubDate>Sun, 26 Dec 2021 00:00:00 -0000</pubDate>
+            <link>{{ site.url }}{{ site.baseurl }}/20211226</link>
+            <guid>{{ site.url }}{{ site.baseurl }}/20211226</guid>
+        </item>
+        <item>
             <title>20211224</title>
             <description>&lt;p&gt;She is pleasing in manner and &lt;strong&gt;appearance&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Tom is the &lt;strong&gt;architect&lt;/strong&gt; of this building.&lt;/p&gt;
