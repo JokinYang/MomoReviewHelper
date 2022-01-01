@@ -10,6 +10,22 @@ layout: none
         <link>{{ site.url }}{{ site.baseurl }}/</link>
         
         <item>
+            <title>20220101</title>
+            <description>&lt;p&gt;According to the weather forecast, it will rain tomorrow.&lt;/p&gt;
+&lt;p&gt;Can you &lt;strong&gt;assimilate&lt;/strong&gt; this idea easily?&lt;/p&gt;
+&lt;p&gt;Little children always &lt;strong&gt;cling&lt;/strong&gt; to their mothers.&lt;/p&gt;
+&lt;p&gt;But while this may be true, it's not a good enough reason to &lt;strong&gt;condemn&lt;/strong&gt; gap years.&lt;/p&gt;
+&lt;p&gt;His &lt;strong&gt;dullness&lt;/strong&gt; was due to lack of initiation.&lt;/p&gt;
+&lt;p&gt;He took a job to &lt;strong&gt;finance&lt;/strong&gt; his stay in Germany.&lt;/p&gt;
+&lt;p&gt;Please put the &lt;strong&gt;garbage&lt;/strong&gt; into the dustbin.&lt;/p&gt;
+&lt;p&gt;Weather plays an &lt;strong&gt;outsize&lt;/strong&gt; role in sea-ice conditions.&lt;/p&gt;
+&lt;p&gt;I like to sit in the first &lt;strong&gt;row&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;He has the &lt;strong&gt;virtue&lt;/strong&gt; of being a good listener.&lt;/p&gt;</description>
+            <pubDate>Sat, 01 Jan 2022 00:00:00 -0000</pubDate>
+            <link>{{ site.url }}{{ site.baseurl }}/20220101</link>
+            <guid>{{ site.url }}{{ site.baseurl }}/20220101</guid>
+        </item>
+        <item>
             <title>20211229</title>
             <description>&lt;p&gt;Afterward, the boy became a very famous artist.&lt;/p&gt;
 &lt;p&gt;There was a lot of &lt;strong&gt;mud&lt;/strong&gt; on the ground.&lt;/p&gt;
