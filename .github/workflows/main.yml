@@ -138,6 +138,8 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
+            adb shell pm uninstall com.maimemo.android.momo
+            adb shell rm -rf /data/app/com.maimemo.android.momo/
             adb install -r -g ${{ env.apk-file }}
             adb shell pm list packages com.maimemo.android.momo
             python get_today_word.py
