@@ -25,4 +25,4 @@
 airtest在Actions所提供Android虚拟机(实际上Android虚拟机是跑在MacOS上的)上进行自动化测试时, 会稳定出现adb断开连接的bug. 导致无法在Action中使用[parse_maimemo.py](https://github.com/JokinYang/MomoReviewHelper/blob/main/parse_maimemo.py)  
 在尝试后发现uiautomator2并不会出现上述问题, 故使用[get_today_word.py](https://github.com/JokinYang/MomoReviewHelper/blob/main/get_today_word.py) 来抓取每日学习的单词
 # For Development
-该README仅做简短的介绍, 若对项目有兴趣或在使用中遇到问题, Pls create a [New Issue](https://github.com/JokinYang/MomoReviewHelper/issues/new )
+该README仅做简短的介绍, 若对项目有兴趣或在使用中遇到问题, Feel free to file a [Issue](https://github.com/JokinYang/MomoReviewHelper/issues/new )
