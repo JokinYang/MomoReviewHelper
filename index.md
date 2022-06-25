@@ -1,4 +1,5 @@
 [GitHub](https://github.com/JokinYang/MomoReviewHelper) [RSS]({{ site.url }}{{ site.baseurl }}/feed.xml)  
+[20220625]({{ site.url }}{{ site.baseurl }}/20220625)  
 [20220624]({{ site.url }}{{ site.baseurl }}/20220624)  
 [20220623]({{ site.url }}{{ site.baseurl }}/20220623)  
 [20220621]({{ site.url }}{{ site.baseurl }}/20220621)  
