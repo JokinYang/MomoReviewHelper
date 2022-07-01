@@ -62,7 +62,7 @@ class ID:
 d = u2.connect()
 
 
-@retry(exceptions=(sqlite3.DatabaseError,), tries=2)
+@retry(exceptions=(sqlite3.DatabaseError,), tries=4)
 def main():
     TIMEOUT = 5
     ACCOUNT = os.environ.get('ACCOUNT', None)
