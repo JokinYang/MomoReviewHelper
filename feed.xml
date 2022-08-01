@@ -10,6 +10,52 @@ layout: none
         <link>{{ site.url }}{{ site.baseurl }}/</link>
         
         <item>
+            <title>20220801</title>
+            <description>&lt;p&gt;The development was &lt;strong&gt;adverse&lt;/strong&gt; to our interests.&lt;/p&gt;
+&lt;p&gt;His threatening words &lt;strong&gt;agitate&lt;/strong&gt; her.&lt;/p&gt;
+&lt;p&gt;Tom is the &lt;strong&gt;architect&lt;/strong&gt; of this building.&lt;/p&gt;
+&lt;p&gt;Please include your quotations in the &lt;strong&gt;bibliography&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Is German on your school's &lt;strong&gt;curriculum&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;The beautiful scenery &lt;strong&gt;delight&lt;/strong&gt;s the eyes.&lt;/p&gt;
+&lt;p&gt;Most of her novels &lt;strong&gt;depict&lt;/strong&gt; life in London.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;directive&lt;/strong&gt; reception&lt;/p&gt;
+&lt;p&gt;The Church preaches the &lt;strong&gt;doctrine&lt;/strong&gt; of free will.&lt;/p&gt;
+&lt;p&gt;They have the &lt;strong&gt;evidence&lt;/strong&gt; to charge him.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;exotic&lt;/strong&gt; atmosphere will fascinate you.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;expenditure&lt;/strong&gt; of money on weapons is very large.&lt;/p&gt;
+&lt;p&gt;I &lt;strong&gt;interpret&lt;/strong&gt; his answer as a refusal.&lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;legislation&lt;/strong&gt; gives help to education.&lt;/p&gt;
+&lt;p&gt;Just look at this &lt;strong&gt;magnificent&lt;/strong&gt; autumn landscape!&lt;/p&gt;
+&lt;p&gt;This note to the bank will &lt;strong&gt;mature&lt;/strong&gt; tomorrow.&lt;/p&gt;
+&lt;p&gt;There has been a &lt;strong&gt;modest&lt;/strong&gt; decrease in house prices.&lt;/p&gt;
+&lt;p&gt;nevertheless / &lt;strong&gt;nonetheless&lt;/strong&gt; / although / though / whereas / while / however / yet / in spite of / all the same&lt;/p&gt;
+&lt;p&gt;Parliament will debate the question tomorrow.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;prescription&lt;/strong&gt; of drugs is a doctor's responsibility.&lt;/p&gt;
+&lt;p&gt;He raised his arm to &lt;strong&gt;protect&lt;/strong&gt; his face.&lt;/p&gt;
+&lt;p&gt;Skill has been made &lt;strong&gt;redundant&lt;/strong&gt; by machine.&lt;/p&gt;
+&lt;p&gt;I &lt;strong&gt;regret&lt;/strong&gt; to hear of your sister's death.&lt;/p&gt;
+&lt;p&gt;Einstein put forward his new theory of &lt;strong&gt;relativity&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Your story shows little &lt;strong&gt;resemblance&lt;/strong&gt; to the facts.&lt;/p&gt;
+&lt;p&gt;I picked a &lt;strong&gt;ripe&lt;/strong&gt; apple from the tree.&lt;/p&gt;
+&lt;p&gt;He went abroad to study as a &lt;strong&gt;scholar&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The manager is dictating a letter to the &lt;strong&gt;secretary&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I'll never forget the look of &lt;strong&gt;sheer&lt;/strong&gt; joy on his face.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;snake&lt;/strong&gt; was creeping along the wall.&lt;/p&gt;
+&lt;p&gt;The sunrise was a splendid &lt;strong&gt;spectacle&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We watched a &lt;strong&gt;spectacular&lt;/strong&gt; sunset.&lt;/p&gt;
+&lt;p&gt;Rice is the &lt;strong&gt;staple&lt;/strong&gt; food in many Asian countries.&lt;/p&gt;
+&lt;p&gt;I would like some &lt;strong&gt;steak&lt;/strong&gt; and bread.&lt;/p&gt;
+&lt;p&gt;I &lt;strong&gt;steer&lt;/strong&gt; the car skillfully through the narrow streets.&lt;/p&gt;
+&lt;p&gt;I'm trying to &lt;strong&gt;stimulate&lt;/strong&gt; him to study harder.&lt;/p&gt;
+&lt;p&gt;The thief masked his face with a &lt;strong&gt;stocking&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I can &lt;strong&gt;undertake&lt;/strong&gt; that you will enjoy the play.&lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;velvet&lt;/strong&gt; dress is very beautiful.&lt;/p&gt;
+&lt;p&gt;Even so, these are &lt;strong&gt;wealthy&lt;/strong&gt; families who party with the international 1%, and media intrusiveness makes it increasingly difficult to maintain the right image.&lt;/p&gt;</description>
+            <pubDate>Mon, 01 Aug 2022 00:00:00 -0000</pubDate>
+            <link>{{ site.url }}{{ site.baseurl }}/20220801</link>
+            <guid>{{ site.url }}{{ site.baseurl }}/20220801</guid>
+        </item>
+        <item>
             <title>20220731</title>
             <description>&lt;p&gt;&lt;strong&gt;June&lt;/strong&gt; is the sixth month of the year.&lt;/p&gt;
 &lt;p&gt;What is it like in the &lt;strong&gt;bowel&lt;/strong&gt; of the earth?&lt;/p&gt;
