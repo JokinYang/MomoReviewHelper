@@ -45,11 +45,14 @@ jobs:
           delta = 1 if now.time() < time(4, 0, 0) else 0
           print("Delta :"+str(delta))
           timestamp = '{:%Y%m%d}'.format(now.date() - timedelta(delta))
-          print('::set-output name=TIMESTAMP::{}'.format(timestamp))
+          
+          os.system('echo "TIMESTAMP={}" >> $GITHUB_OUTPUT'.format(timestamp))
+          # print('::set-output name=TIMESTAMP::{}'.format(timestamp))
           print("Timestamp with tz:"+str(timestamp))
 
           exists = any(filter(lambda x: os.path.isfile(x) and re.match('.*{}.*'.format(timestamp), x), os.listdir('./')))
-          print('::set-output name=NEED_RUN::{}'.format(int(not exists)))
+          os.system('echo "NEED_RUN={}" >> $GITHUB_OUTPUT'.format(int(not exists)))
+          # print('::set-output name=NEED_RUN::{}'.format(int(not exists)))
         shell: python
 
 
