@@ -1,5 +1,5 @@
 # 墨墨复习助手
-[![](https://img.shields.io/static/v1?label=%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA&message=GitHub%20Pages&color=blue)](https://blog.5p2o.com)  
+[![](https://img.shields.io/static/v1?label=%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA&message=GitHub%20Pages&color=blue)](https://mrh.5p2o.com)  
 使用android测试自动化的方式来收集[墨墨背单词](https://www.maimemo.com/) 当天规划记忆的单词,以供复习使用.  
 # Why  
 墨墨背单词所提供的复习方法较为单一, 且不能同时使用`看英文回忆中文`和`看中文回忆英文`来记忆单词. 
